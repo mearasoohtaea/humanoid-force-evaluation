@@ -1,0 +1,86 @@
+{
+  "protocol_id": "EXP1-ORIGINAL-RETURN-20260929",
+  "frozen_at_utc": "2026-09-29T12:57:54.404562+00:00",
+  "source_commit": "cb1189039151c8aadaaa987b442da54383c87fab",
+  "task": "h1hand-window-v0",
+  "episodes_per_checkpoint": 30,
+  "eval_seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027,
+    1028,
+    1029
+  ],
+  "maximum_total_episodes": 270,
+  "episode_index_base": 0,
+  "order": [
+    "DreamerV3 seed 0",
+    "DreamerV3 seed 1",
+    "DreamerV3 seed 2",
+    "TD-MPC2 seed 0",
+    "TD-MPC2 seed 1",
+    "TD-MPC2 seed 2",
+    "SAC seed 0",
+    "SAC seed 1",
+    "SAC seed 2"
+  ],
+  "environment": {
+    "constructor": "gymnasium.make('h1hand-window-v0', render_mode=None)",
+    "reset": "fresh original Gymnasium environment per checkpoint; env.reset(seed=s) for each episode",
+    "horizon": 1000,
+    "action_dim": 61,
+    "action_range": [
+      -1,
+      1
+    ],
+    "rendering": false,
+    "other_environment_options": "unchanged benchmark defaults used by flat baseline training",
+    "reward_observations_physics_assets_control_rate": "unchanged"
+  },
+  "randomness": {
+    "per_episode": "Python random.seed(s); numpy.random.seed(s); env.reset(seed=s); action_space.seed(s); observation_space.seed(s)",
+    "DreamerV3": "agent.rng = numpy.random.default_rng(s) before agent.init_policy(1); native _next_rngs produces JAX policy/planning keys",
+    "TD-MPC2": "torch.manual_seed(s), torch.cuda.manual_seed_all(s); t0=True resets MPC carry; cudnn deterministic=True, benchmark=False",
+    "SAC": "agent.rng=jax.random.PRNGKey(s); native actor distribution mode is deterministic",
+    "matched_seeds": "Matched environment initialization, not identical trajectories across methods"
+  },
+  "policy_modes": {
+    "DreamerV3": "agent.policy(mode=\"eval\"); native stochastic task policy",
+    "TD-MPC2": "agent.act(eval_mode=True, t0=first_step); native MPC",
+    "SAC": "agent.actor(observation).mode(); tanh Gaussian mean; clip [-1,1]"
+  },
+  "return": "Float64/Python-float sum of original per-step environment rewards; no smoothing or replacement",
+  "failure": {
+    "source": "humanoid_bench/envs/window.py:Window.get_terminated",
+    "semantics": "Native termination if robot root qpos[2]<0.58 OR window_wiping_tool z<0.58; task exposes no separate flag or reason identifying which condition",
+    "native_failure": "bool(terminated), using native task failure termination directly, including a failure on horizon step",
+    "horizon": "Gymnasium TimeLimit truncated is recorded separately and is not itself failure",
+    "reason": "NATIVE_ROBOT_OR_TOOL_HEIGHT_TERMINATION / HORIZON_TRUNCATION; no new detector or state queries",
+    "info": "record final available info key names and only explicit scalar failure/termination/success fields; never export reward-component/contact/force values"
+  }
+}

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this development software if you use its code."
+title: "Humanoid force-aware evaluation development toolkit"
+type: software
+authors:
+  - family-names: Chen
+    given-names: Sihan
+version: 0.1.0-dev
+date-released: 2026-10-13
+license: MIT
+repository-code: "https://github.com/mearasoohtaea/humanoid-force-evaluation"

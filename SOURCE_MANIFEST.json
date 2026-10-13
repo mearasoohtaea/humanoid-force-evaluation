@@ -1,0 +1,13 @@
+{
+  "release": "0.1.0-dev",
+  "benchmark_commit": "cb1189039151c8aadaaa987b442da54383c87fab",
+  "files": {
+    "exp1_return_eval.py": "832989f06cfb565766b4aaea10f00eaeb51757bc98162e71d8e6abf5b942924a",
+    "truck_exp1_return_eval.py": "80bb33833744f0b6d5d3d0994f5e4d8746cfbd4ab400ac866da1e7559abf2684",
+    "phase0f_dreamer_terminal_adapter.py": "bc7cf6bb28fa871187f77f69e1d75b39e71d72c41391d9f56baa1a7c0f55cd05",
+    "phase0f_dreamer_truck_terminal_adapter.py": "b8e893a793e7d63c92c75e4b1f29041b27a251ea92140d69be5362c1320e8f87",
+    "phase0f_tdmpc_truck_terminal_adapter.py": "040ab070bd103e9106593e0b0cfdb1d7fc6faaa7d9ec37cdf01f48a30c21791f",
+    "phase0f_sac_logging_adapter.py": "2ec8e48d038844509cb0871822e9c0c164426948b232dfb7c8051d1058d01015",
+    "phase0f_sac_truck_logging_adapter.py": "e92edde2c13aa56405fa3b102a7cdf34b2be0f7586aaa505826a53ba493852d1"
+  }
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv*/
+.env
+*.ckpt
+*.pt
+*.pth
+*.pkl
+artifacts/
+tmp/
+third_party/
